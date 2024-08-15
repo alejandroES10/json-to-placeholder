@@ -1,15 +1,16 @@
 "use client";
 
 import React, { useState } from 'react';
-import { fillDictionary, replacePlaceholders } from '@/utils/functions'; // Importa todas las funciones necesarias
-import styles from './Form.module.css'; // Importa el archivo CSS
+import { fillDictionary, replacePlaceholders } from '@/utils/functions'; 
+import styles from './Form.module.css'; 
 
 interface FormProps {
     placeholderList: string[];
     diccionaryToFill: Map<string, any>;
+    text: string
 }
 
-export function Form({ placeholderList, diccionaryToFill }: FormProps) {
+export function Form({ placeholderList, diccionaryToFill,text }: FormProps) {
   const [formData, setFormData] = useState<{ [key: string]: string }>({});
   const [replacedText, setReplacedText] = useState<string | null>(null);
 
@@ -23,13 +24,13 @@ export function Form({ placeholderList, diccionaryToFill }: FormProps) {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     fillDictionary(diccionaryToFill, formData);
-    console.log(formData); 
-    console.log("********");
-    console.log(diccionaryToFill);
+    // console.log(formData); 
+    // console.log("********");
+    // console.log(diccionaryToFill);
 
-    // Reemplaza los placeholders y actualiza el estado
+   
     const filledText = replacePlaceholders(
-      "Hello my name is _name_, I have _age_ years old and I live in _city_", 
+      text, 
       diccionaryToFill
     );
     setReplacedText(filledText);

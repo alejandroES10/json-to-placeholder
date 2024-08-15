@@ -12,7 +12,7 @@ export default function Home() {
   let text: string = "Hello my name is _name_, I have _age_ years old and I live in _city_";
   
   let keysFromText = fromTextToDiccionary(text);
-  console.log("Keys from text:", [...keysFromText.entries()]);
+  // console.log("Keys from text:", [...keysFromText.entries()]);
   
   let missingProperties = fillDictionary(keysFromText, person);
   
@@ -21,7 +21,8 @@ export default function Home() {
   return (
     <>
       {missingProperties.length > 0 ? (
-        <Form placeholderList={missingProperties} diccionaryToFill={keysFromText}/>
+        <Form placeholderList={missingProperties} diccionaryToFill={keysFromText} text = {text}/>
+        
       ) : (
         <p>{replacePlaceholders(text, keysFromText)}</p>
       )}
